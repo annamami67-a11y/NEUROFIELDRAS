@@ -1,0 +1,51 @@
+
+:root{
+  --bg0:#0B0F14;--bg1:#101722;--card:rgba(16,23,34,.35);--stroke:rgba(34,49,70,.7);
+  --text:#F3F0E9;--muted:#C8C2B5;--muted2:#9AA7B8;--accent:#F2B705;--shadow:0 10px 35px rgba(0,0,0,.35);
+  --r:18px;--rs:12px;--w:1120px;--sans:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial,"Noto Sans","Helvetica Neue",sans-serif;
+  --mono:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
+}
+*{box-sizing:border-box}html,body{height:100%}
+body{margin:0;font-family:var(--sans);color:var(--text);line-height:1.45;
+  background:radial-gradient(900px 500px at 20% -10%,rgba(242,183,5,.12),transparent 55%),
+           radial-gradient(900px 500px at 80% 0%,rgba(127,174,154,.10),transparent 60%),
+           radial-gradient(1100px 650px at 50% 115%,rgba(43,63,92,.35),transparent 60%),
+           linear-gradient(180deg,var(--bg0),var(--bg1) 40%,var(--bg0));
+}
+a{color:inherit;text-decoration:none}a:hover{opacity:.92}
+.container{max-width:var(--w);margin:0 auto;padding:0 18px}
+.topbar{position:sticky;top:0;z-index:50;backdrop-filter:blur(10px);background:rgba(11,15,20,.65);
+  border-bottom:1px solid rgba(34,49,70,.55)}
+.topbar-inner{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:14px 0}
+.brand{display:flex;align-items:center;gap:10px;min-width:210px}
+.brand-mark{width:34px;height:34px;border-radius:12px;
+  background:radial-gradient(circle at 30% 30%,rgba(242,183,5,.85),rgba(242,183,5,.25) 45%,rgba(127,174,154,.10) 70%,transparent 72%),
+           linear-gradient(145deg,rgba(255,255,255,.12),rgba(255,255,255,.03));
+  border:1px solid rgba(242,183,5,.25);box-shadow:0 10px 22px rgba(242,183,5,.08)}
+.brand-title strong{font-size:13.5px} .brand-title span{font-size:11px;color:var(--muted2)}
+.nav{display:none;gap:18px;align-items:center}
+.nav a{font-size:13px;color:var(--muted);padding:8px 10px;border-radius:12px}
+.nav a.active,.nav a:hover{background:rgba(34,49,70,.35);color:var(--text)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  border:1px solid var(--stroke);background:rgba(16,23,34,.7);padding:10px 14px;border-radius:14px;
+  cursor:pointer;transition:transform .12s,border-color .12s;background .12s;font-weight:600;font-size:13.5px}
+.btn:hover{transform:translateY(-1px);border-color:rgba(242,183,5,.45)}
+.btn-primary{background:linear-gradient(180deg,rgba(242,183,5,.22),rgba(242,183,5,.06));border-color:rgba(242,183,5,.35)}
+.hamburger{width:40px;height:40px;border-radius:14px;display:inline-flex;align-items:center;justify-content:center;
+  border:1px solid var(--stroke);background:rgba(16,23,34,.55)}
+.section{padding:26px 0}.hero{padding:48px 0 22px}
+.kicker{display:inline-flex;gap:10px;padding:8px 12px;border-radius:999px;border:1px solid rgba(34,49,70,.65);
+  background:rgba(16,23,34,.45);color:var(--muted);font-size:12px}
+h1{margin:14px 0 10px;font-size:clamp(26px,3.3vw,44px);line-height:1.08;letter-spacing:-.5px}
+p{color:var(--muted)} .grid{display:grid;gap:12px} .grid-3{grid-template-columns:1fr}
+.card{border-radius:var(--r);border:1px solid rgba(34,49,70,.7);background:rgba(16,23,34,.35);padding:16px;box-shadow:var(--shadow)}
+.card h3{margin:0 0 8px;font-size:16px}.card p{margin:0;font-size:13.5px}
+.badge{display:inline-flex;align-items:center;gap:8px;padding:7px 10px;border-radius:999px;border:1px solid rgba(34,49,70,.65);
+  background:rgba(16,23,34,.45);color:var(--muted);font-size:12px}
+.badge .dot{width:7px;height:7px;border-radius:999px;background:rgba(242,183,5,.9);box-shadow:0 0 0 4px rgba(242,183,5,.18)}
+.hr{height:1px;background:rgba(34,49,70,.7);margin:14px 0}
+.notice{border:1px solid rgba(242,183,5,.35);background:rgba(242,183,5,.08);border-radius:var(--r);padding:14px}
+.small{font-size:12px;color:var(--muted2)}
+input,select,textarea{width:100%;padding:12px;border-radius:14px;border:1px solid rgba(34,49,70,.75);background:rgba(16,23,34,.45);outline:none}
+input:focus,select:focus,textarea:focus{border-color:rgba(242,183,5,.55);box-shadow:0 0 0 4px rgba(242,183,5,.12)}
+@media(min-width:860px){.nav{display:flex}.hamburger{display:none}.hero{padding:62px 0 26px}.grid-3{grid-template-columns:repeat(3,1fr)}}

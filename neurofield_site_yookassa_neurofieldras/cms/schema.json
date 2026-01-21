@@ -1,0 +1,99 @@
+{
+  "collections": {
+    "pages": {
+      "slug": "string (unique)",
+      "title": "string",
+      "description": "text",
+      "seo": {
+        "ogTitle": "string",
+        "ogDescription": "text",
+        "ogImage": "asset"
+      },
+      "blocks": "[blockRef]",
+      "status": "enum(draft,published)",
+      "updatedAt": "datetime"
+    },
+    "blocks": {
+      "id": "string",
+      "type": "enum(hero,features,cards,steps,richText,faq,pricing,cta,form,legalNotice)",
+      "title": "string",
+      "subtitle": "string",
+      "content": "richText/json",
+      "items": "json",
+      "cta": {
+        "label": "string",
+        "url": "string",
+        "secondaryLabel": "string",
+        "secondaryUrl": "string"
+      }
+    },
+    "products": {
+      "sku": "string (unique)",
+      "kind": "enum(stage,visuals,subscription,consultation)",
+      "title": "string",
+      "stageNumber": "int 1..7 (optional)",
+      "whatInside": "json[]",
+      "delivery": {
+        "type": "enum(file,access,manual)",
+        "asset": "file",
+        "ttlHours": "int",
+        "accessScope": "string"
+      },
+      "active": "bool"
+    },
+    "prices": {
+      "productSku": "ref(products.sku)",
+      "currency": "string (RUB/EUR/...)",
+      "amount": "int (minor units, e.g. 49900)",
+      "interval": "enum(one_time,month,year)",
+      "providerIds": {
+        "yookassa": "string",
+        "sber": "string",
+        "stripe": "string"
+      },
+      "active": "bool"
+    },
+    "faq": {
+      "category": "enum(parents,specialists,payments,method)",
+      "question": "string",
+      "answer": "richText",
+      "order": "int"
+    },
+    "legal": {
+      "type": "enum(privacy,offer,disclaimer,cookie,consent)",
+      "title": "string",
+      "content": "richText",
+      "version": "string",
+      "lastUpdated": "date"
+    },
+    "analytics": {
+      "yandexMetrikaId": "string",
+      "ga4MeasurementId": "string",
+      "pixelMeta": "string",
+      "consentMode": "enum(off,basic,advanced)"
+    },
+    "settings": {
+      "siteName": "string",
+      "tagline": "string",
+      "accentColor": "enum(amber,sage)",
+      "company": {
+        "legalName": "string",
+        "inn": "string",
+        "ogrn": "string",
+        "address": "string",
+        "email": "string",
+        "phone": "string"
+      },
+      "payments": {
+        "provider": "enum(yookassa,sber,stripe)",
+        "successUrl": "string",
+        "failUrl": "string",
+        "webhookSecret": "string"
+      },
+      "emails": {
+        "from": "string",
+        "smtp": "json"
+      }
+    }
+  }
+}

@@ -1,0 +1,59 @@
+openapi: 3.0.3
+info:
+  title: NEUROFIELDRAS Payments + Webhooks + Access
+  version: 1.0.0
+servers:
+  - url: http://localhost:8787
+paths:
+  /api/payments/create:
+    post:
+      summary: Create a payment intent (server-side price lookup by product/stage)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [type, stage]
+              properties:
+                type: { type: string, enum: [stage, visuals] }
+                stage: { type: integer, minimum: 1, maximum: 7 }
+                qty: { type: integer, minimum: 1, maximum: 5 }
+                email: { type: string }
+                telegram: { type: string }
+                meta: { type: object }
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ok: { type: boolean }
+                  order_id: { type: string }
+                  amount: { type: integer }
+                  currency: { type: string }
+                  checkout_url: { type: string }
+                  access_token: { type: string }
+  /api/payments/webhook:
+    post:
+      summary: Payment provider webhook (verify signature)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { type: object }
+      responses:
+        '200': { description: OK }
+  /api/access/{token}:
+    get:
+      summary: Get delivery links for a paid order by access token
+      parameters:
+        - in: path
+          name: token
+          required: true
+          schema: { type: string }
+      responses:
+        '200': { description: OK }
+        '402': { description: Payment required }
