@@ -51,6 +51,23 @@ input:focus,select:focus,textarea:focus{border-color:rgba(242,183,5,.55);box-sha
 @media(min-width:860px){.nav{display:flex}.hamburger{display:none}.hero{padding:62px 0 26px}.grid-3{grid-template-columns:repeat(3,1fr)}}
 
 
-/* Logo */
-.logo{height:28px;width:auto;display:block;border-radius:10px;}
-@media (max-width:560px){.logo{height:26px;}}
+.logo{
+  height: 44px;
+  width: 44px;
+  object-fit: contain;
+  display: block;
+  border-radius: 14px;
+}
+
+.brand-mark-only{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding: 6px;
+  border-radius: 16px;
+}
+
+@media (max-width:560px){
+  .logo{ height: 38px; width: 38px; border-radius: 12px; }
+  .brand-mark-only{ padding: 5px; }
+}
