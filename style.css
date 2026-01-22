@@ -103,3 +103,54 @@ input:focus,select:focus,textarea:focus{border-color:rgba(242,183,5,.55);box-sha
 .stage-help summary{cursor:pointer; font-weight:600;}
 .stage-help__body{margin-top:10px;}
 .opt-desc{margin-top:6px; font-size: 13px; color: rgba(242,239,230,.78); line-height:1.4;}
+
+
+/* Make article illustrations smaller and calmer */
+.article .nf-figure{padding:12px; max-width: 760px;}
+.article .nf-figure img{max-height: 360px; object-fit: cover;}
+@media (max-width:560px){
+  .article .nf-figure img{max-height: 260px;}
+}
+
+
+/* Test page: force milk text, no black */
+body[data-path="/test.html"]{ color: #F2EFE6; }
+body[data-path="/test.html"] h1,
+body[data-path="/test.html"] h2,
+body[data-path="/test.html"] h3,
+body[data-path="/test.html"] p,
+body[data-path="/test.html"] label,
+body[data-path="/test.html"] .small,
+body[data-path="/test.html"] .muted,
+body[data-path="/test.html"] input,
+body[data-path="/test.html"] button,
+body[data-path="/test.html"] .card,
+body[data-path="/test.html"] .opt,
+body[data-path="/test.html"] .opt *{
+  color: #F2EFE6 !important;
+}
+body[data-path="/test.html"] .opt-desc,
+body[data-path="/test.html"] .muted{
+  color: rgba(242,239,230,.78) !important;
+}
+
+
+/* Header brand name next to logo */
+.brand-name{
+  font-weight: 700;
+  letter-spacing: .02em;
+  font-size: 14px;
+  color: rgba(242,239,230,.92);
+  margin-left: 10px;
+  display:inline-block;
+  white-space: nowrap;
+}
+.brand.brand-mark-only{gap:0;} /* keep tight */
+@media (max-width:560px){
+  .brand-name{font-size: 13px; margin-left: 8px;}
+}
+
+
+/* Reduce figures in listings/hero */
+.hero-right .nf-figure img{max-height: 320px; object-fit: cover;}
+@media (max-width:560px){ .hero-right .nf-figure img{max-height: 220px;} }
