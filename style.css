@@ -354,3 +354,37 @@ body:before{
     margin: 0 0 0 auto;
   }
 }
+
+
+/* =========================
+   INLINE MEDIA (PNG) v5
+   Images live with text (no "lonely" pictures)
+   ========================= */
+.media-card{
+  display:grid;
+  grid-template-columns: 1.05fr 2.95fr; /* ~1/4 */
+  gap: 16px;
+  align-items: start;
+}
+.media-card .media{
+  margin:0;
+  padding:0;
+  border:none;
+  background: transparent;
+  box-shadow:none;
+}
+.media-card .media img{
+  width:100%;
+  height:auto;
+  border-radius: 18px;
+  display:block;
+  border: 1px solid rgba(242,239,230,.12);
+  background: rgba(242,239,230,.06);
+}
+.media-card .content > *:first-child{ margin-top:0; }
+@media (max-width: 899px){
+  .media-card{ grid-template-columns: 1fr; }
+}
+
+/* v5 override: don't float media inside media-card */
+@media (min-width:900px){ .media-card .nf-figure, .media-card .nf-banner{ float:none; width:100%; max-width:100%; margin:0; } }
