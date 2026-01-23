@@ -20,6 +20,8 @@
   </svg>
 </button>
 <a class="btn btn-primary" href="/test.html">Пройти тест</a>
+
+<a class="btn" href="#login" data-auth-open>Войти</a>
 </div>
 </div></header>
 
@@ -46,7 +48,7 @@
     </nav>
     <div class="panel-actions">
       <a class="btn btn-primary" href="/test.html">Пройти тест</a>
-      <a class="btn" href="/materials.html">Материалы (499 ₽)</a>
+      <a class="btn" href="/materials.html">Материалы (от 299 ₽)</a>
     </div>
   </div>
 </div>
@@ -137,4 +139,53 @@
 </div></footer>
 <script src="/config.js"></script>
 <script src="/js/app.js"></script>
+
+<div class="nf-modal" id="authModal" aria-hidden="true">
+  <div class="nf-modal-backdrop" data-auth-close></div>
+  <div class="nf-modal-panel" role="dialog" aria-modal="true" aria-label="Вход">
+    <div class="nf-modal-head">
+      <div class="nf-modal-title">Вход / регистрация</div>
+      <button class="nf-modal-close" type="button" aria-label="Закрыть" data-auth-close>×</button>
+    </div>
+
+    <div class="nf-tabs">
+      <button class="nf-tab is-active" type="button" data-auth-tab="email">Email</button>
+      <button class="nf-tab" type="button" data-auth-tab="phone">Телефон</button>
+    </div>
+
+    <div class="nf-tabpanels">
+      <div class="nf-panel is-active" data-auth-panel="email">
+        <label class="small">Email</label>
+        <input id="authEmail" placeholder="you@email.com" autocomplete="email" />
+      </div>
+      <div class="nf-panel" data-auth-panel="phone">
+        <label class="small">Телефон</label>
+        <input id="authPhone" placeholder="+7..." autocomplete="tel" />
+      </div>
+    </div>
+
+    <div class="small muted" style="margin-top:10px">
+      В демо-режиме код подтверждения: <b>1234</b>. Позже подключим реальные письма/SMS и вход через VK ID/MAX.
+    </div>
+
+    <div style="margin-top:12px;display:flex;gap:10px;flex-wrap:wrap">
+      <button class="btn btn-primary" type="button" id="authSend">Получить код</button>
+      <input id="authCode" placeholder="Код" style="max-width:140px" inputmode="numeric" />
+      <button class="btn" type="button" id="authLogin">Войти</button>
+    </div>
+
+    <div class="hr"></div>
+
+    <div class="small">Войти через соцсети</div>
+    <div style="margin-top:10px;display:flex;gap:10px;flex-wrap:wrap">
+      <a class="btn" href="/api/oauth/vk/start" data-auth-soon>VK ID</a>
+      <a class="btn" href="/api/oauth/max/start" data-auth-soon>MAX</a>
+    </div>
+
+    <div class="small muted" style="margin-top:12px">
+      Нажимая «Войти», вы соглашаетесь с <a href="/legal-privacy.html">политикой</a> и <a href="/legal-offer.html">условиями</a>.
+    </div>
+  </div>
+</div>
+
 </body></html>

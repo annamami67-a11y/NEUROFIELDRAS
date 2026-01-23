@@ -557,3 +557,46 @@ body:before{
   background: rgba(242,183,5,.08);
 }
 .test-tip b{ color: rgba(242,239,230,.95); }
+
+/* =========================
+   AUTH MODAL + CABINET v10
+   ========================= */
+.nf-modal{ position:fixed; inset:0; display:none; z-index:1200; }
+.nf-modal.is-open{ display:block; }
+.nf-modal-backdrop{ position:absolute; inset:0; background: rgba(0,0,0,.5); backdrop-filter: blur(6px); }
+.nf-modal-panel{
+  position:relative;
+  margin: 10vh auto 0;
+  max-width: 520px;
+  width: calc(100% - 28px);
+  border-radius: 22px;
+  border: 1px solid rgba(242,239,230,.14);
+  background: rgba(9,18,33,.92);
+  box-shadow: 0 18px 60px rgba(0,0,0,.55);
+  padding: 14px;
+}
+.nf-modal-head{ display:flex; align-items:center; justify-content:space-between; gap:10px; padding-bottom:10px; border-bottom:1px solid rgba(242,239,230,.10); }
+.nf-modal-title{ font-weight:800; letter-spacing:.2px; }
+.nf-modal-close{
+  width:40px;height:40px;border-radius:14px;
+  border:1px solid rgba(242,239,230,.14);
+  background: rgba(242,239,230,.06);
+  color: var(--cream);
+  cursor:pointer;
+  font-size: 22px; line-height: 1;
+}
+.nf-tabs{ display:flex; gap:10px; margin-top:12px; }
+.nf-tab{
+  padding:10px 12px; border-radius:14px;
+  border:1px solid rgba(242,239,230,.12);
+  background: rgba(242,239,230,.05);
+  color: rgba(242,239,230,.9);
+  cursor:pointer;
+}
+.nf-tab.is-active{ background: rgba(242,183,5,.12); border-color: rgba(242,183,5,.22); }
+.nf-panel{ display:none; margin-top:10px; }
+.nf-panel.is-active{ display:block; }
+
+.table{ width:100%; border-collapse:collapse; }
+.table th,.table td{ text-align:left; padding:10px 8px; border-bottom:1px solid rgba(242,239,230,.10); font-size: 14px; }
+.table th{ color: rgba(242,239,230,.72); font-weight:700; }
