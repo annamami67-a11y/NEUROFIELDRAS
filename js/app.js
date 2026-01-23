@@ -19,3 +19,31 @@
     clearTimeout(window.__t); window.__t=setTimeout(()=>el.style.display="none",2400);
   }
 })();
+
+/* MOBILE BURGER NAV v8 */
+(function(){
+  const burger = document.querySelector('[data-burger]');
+  const drawer = document.querySelector('[data-drawer]');
+  if(!burger || !drawer) return;
+  const closeBtn = drawer.querySelector('[data-drawer-close]');
+  const backdrop = drawer.querySelector('[data-drawer-backdrop]');
+  function open(){
+    drawer.classList.add('is-open');
+    document.documentElement.style.overflow='hidden';
+    burger.setAttribute('aria-expanded','true');
+  }
+  function close(){
+    drawer.classList.remove('is-open');
+    document.documentElement.style.overflow='';
+    burger.setAttribute('aria-expanded','false');
+  }
+  burger.addEventListener('click', ()=> drawer.classList.contains('is-open') ? close() : open());
+  closeBtn && closeBtn.addEventListener('click', close);
+  backdrop && backdrop.addEventListener('click', close);
+  drawer.addEventListener('click', (e)=>{
+    const a=e.target.closest('a'); if(a) close();
+  });
+  document.addEventListener('keydown', (e)=>{
+    if(e.key==='Escape') close();
+  });
+})();

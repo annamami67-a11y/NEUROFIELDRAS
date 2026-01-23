@@ -12,9 +12,44 @@
 <a href="/about.html">О системе</a><a href="/test.html">Тест</a><a href="/materials.html">Материалы</a><a href="/articles.html">Статьи</a><a href="/faq.html">FAQ</a><a href="/results.html">Результаты</a><a href="/contacts.html">Контакты</a>
 </nav>
 <div style="display:flex;gap:10px;align-items:center">
+
+<button class="burger" type="button" aria-label="Открыть меню" aria-expanded="false" data-burger>
+  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+    <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+  </svg>
+</button>
 <a class="btn btn-primary" href="/test.html">Пройти тест</a>
 </div>
 </div></header>
+
+<div class="nf-drawer" data-drawer aria-hidden="true">
+  <div class="backdrop" data-drawer-backdrop></div>
+  <div class="panel" role="dialog" aria-modal="true" aria-label="Меню">
+    <div class="panel-head">
+      <div class="panel-title">Меню</div>
+      <button class="close" type="button" aria-label="Закрыть меню" data-drawer-close>
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </button>
+    </div>
+    <nav>
+      <a href="/index.html">Главная</a>
+      <a href="/about.html">О системе</a>
+      <a href="/test.html">Тест</a>
+      <a href="/materials.html">Материалы</a>
+      <a href="/articles.html">Статьи</a>
+      <a href="/results.html">Результаты</a>
+      <a href="/faq.html">FAQ</a>
+      <a href="/contacts.html">Контакты</a>
+    </nav>
+    <div class="panel-actions">
+      <a class="btn btn-primary" href="/test.html">Пройти тест</a>
+      <a class="btn" href="/materials.html">Материалы (499 ₽)</a>
+    </div>
+  </div>
+</div>
+
 <main><section class="section"><div class="container">
 <div class="grid" style="gap:10px">
 <div class="card"><h3>Это диагностика?</h3><p>Нет. Это образовательная оценка для подбора поддержки.</p></div>
