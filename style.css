@@ -107,9 +107,9 @@ input:focus,select:focus,textarea:focus{border-color:rgba(242,183,5,.55);box-sha
 
 /* Make article illustrations smaller and calmer */
 .article .nf-figure{padding:12px; max-width: 760px;}
-.article .nf-figure img{max-width: 100%; height: auto; object-fit: contain;}
+.article .nf-figure img{max-width:100%;height:auto;object-fit:contain;}
 @media (max-width:560px){
-  .article .nf-figure img{max-height: 260px;}
+  .article .nf-figure img{max-width:100%;height:auto;object-fit:contain;}
 }
 
 
@@ -152,8 +152,8 @@ body[data-path="/test.html"] .muted{
 
 
 /* Reduce figures in listings/hero */
-.hero-right .nf-figure img{max-width: 100%; height: auto; object-fit: contain;}
-@media (max-width:560px){ .hero-right .nf-figure img{max-height: 220px;} }
+.hero-right .nf-figure img{max-width:100%;height:auto;object-fit:contain;}
+@media (max-width:560px){ .hero-right .nf-figure img{max-width:100%;height:auto;object-fit:contain;} }
 
 /* Article figure max width */
 .article .nf-figure{max-width: 720px; margin-left:auto; margin-right:auto;}
@@ -301,3 +301,56 @@ body:before{
 }
 .nf-acc summary::-webkit-details-marker{display:none;}
 .nf-acc__body{margin-top:10px;}
+
+
+/* =========================
+   SMALL IMAGES LAYOUT v4
+   Make illustrations take ~1/4 page on desktop, full width on mobile
+   ========================= */
+
+/* Clear floats inside article blocks */
+.article::after{content:"";display:block;clear:both;}
+
+/* Default figures: behave like inline side media on wide screens */
+@media (min-width: 900px){
+  .nf-figure,
+  .nf-banner{
+    width: min(25vw, 320px);      /* ~1/4 page */
+    max-width: 320px;
+    float: right;
+    margin: 6px 0 14px 18px;
+  }
+  .nf-figure img,
+  .nf-banner img{
+    width:100%;
+    height:auto;
+    object-fit:contain;           /* NO cropping */
+  }
+  /* Keep captions compact */
+  .nf-figure figcaption{
+    font-size: 13px;
+    margin-top: 8px;
+  }
+}
+
+/* On mobile/tablet: go full width for readability */
+@media (max-width: 899px){
+  .nf-figure,
+  .nf-banner{
+    float:none;
+    width:100%;
+    max-width: 100%;
+    margin: 14px 0;
+  }
+}
+
+/* Hero column override: don't float inside hero-right, just constrain size */
+@media (min-width: 900px){
+  .hero-right .nf-figure,
+  .hero-right .nf-banner{
+    float:none;
+    width: 100%;
+    max-width: 320px;
+    margin: 0 0 0 auto;
+  }
+}
