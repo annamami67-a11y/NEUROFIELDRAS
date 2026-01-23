@@ -388,3 +388,47 @@ body:before{
 
 /* v5 override: don't float media inside media-card */
 @media (min-width:900px){ .media-card .nf-figure, .media-card .nf-banner{ float:none; width:100%; max-width:100%; margin:0; } }
+
+
+/* =========================
+   CENTERED 4-PNG STRIP v6
+   Each key page shows the same 4 images (compact, centered)
+   ========================= */
+.nf-visual-card{ text-align:center; }
+.nf-visual-card .small{ text-align:left; }
+.nf-strip{
+  display:grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  align-items: stretch;
+  justify-items: center;
+  margin-top: 12px;
+}
+.nf-strip img{
+  width: 100%;
+  max-width: 220px;      /* compact */
+  height: auto;
+  border-radius: 18px;
+  display:block;
+  border: 1px solid rgba(242,239,230,.12);
+  background: rgba(242,239,230,.06);
+  box-shadow: 0 12px 30px rgba(0,0,0,.18);
+}
+.nf-strip .cap{
+  margin-top: 8px;
+  font-size: 12.5px;
+  color: rgba(242,239,230,.70);
+}
+@media (max-width: 980px){
+  .nf-strip{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .nf-strip img{ max-width: 260px; }
+}
+@media (max-width: 520px){
+  .nf-strip{ grid-template-columns: 1fr; }
+  .nf-strip img{ max-width: 320px; }
+}
+
+/* v6: disable float-style for figures (we use centered strips instead) */
+@media (min-width:900px){
+  .nf-figure,.nf-banner{ float:none; width:100%; max-width:100%; margin: 14px 0; }
+}
