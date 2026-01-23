@@ -23,6 +23,13 @@
       <div class="hero-left">
         <h1>Статьи</h1>
         <p class="lead">Спокойные и практичные материалы о перегрузе, мелтдаунах, среде и поддержке. Без «магических» обещаний — только понятные шаги.</p>
+<div class="nf-filters" style="margin-top:12px">
+  <button class="chip is-active" data-filter="all" type="button">Все</button>
+  <button class="chip" data-filter="meltdown" type="button">Мелтдауны</button>
+  <button class="chip" data-filter="transitions" type="button">Переходы</button>
+  <button class="chip" data-filter="school" type="button">Школа/сад</button>
+  <button class="chip" data-filter="communication" type="button">Коммуникация</button>
+</div>
         <div class="hero-cta">
           <a class="btn btn-primary" href="/test.html">Пройти тест стадии</a>
           <a class="btn" href="/materials.html">Материалы по стадиям</a>
@@ -40,25 +47,25 @@
     </div>
 
     <div class="grid cards" style="margin-top:18px">
-      <a class="card card-link" href="/article-meltdown.html">
+      <a class="card card-link" href="/article-meltdown.html" data-tags="meltdown">
         <div class="card-kicker">Мелтдаун</div>
         <h3>Мелтдаун — это сигнал, а не поведение</h3>
         <p class="small">Чем отличается от «истерики», почему это происходит и как распознавать ранние признаки.</p>
       </a>
 
-      <a class="card card-link" href="/article-meltdown-protocol.html">
+      <a class="card card-link" href="/article-meltdown-protocol.html" data-tags="meltdown transitions">
         <div class="card-kicker">Протокол</div>
         <h3>ДО / ВО ВРЕМЯ / ПОСЛЕ</h3>
         <p class="small">Короткий протокол безопасности и восстановления, который можно согласовать всей командой взрослых.</p>
       </a>
 
-      <a class="card card-link" href="/article-life-with-meltdown.html">
+      <a class="card card-link" href="/article-life-with-meltdown.html" data-tags="meltdown everyday">
         <div class="card-kicker">Ежедневная система</div>
         <h3>Как жить с мелтдаунами</h3>
         <p class="small">Профилактика перегруза: режим, среда, паузы, предсказуемость — без давления и стыда.</p>
       </a>
 
-      <a class="card card-link" href="/article-school-meltdown.html">
+      <a class="card card-link" href="/article-school-meltdown.html" data-tags="school transitions">
         <div class="card-kicker">Школа / сад</div>
         <h3>Командные договорённости</h3>
         <p class="small">Как снизить перегруз в группе и что делать взрослым, чтобы ребёнок оставался в безопасности.</p>
@@ -72,6 +79,27 @@
     </div>
   </div>
 </section>
+
+<script>
+(function NFArticlesFilters(){
+  const box=document.querySelector('.nf-filters');
+  const cards=[...document.querySelectorAll('.grid.cards a.card-link[data-tags]')];
+  if(!box||!cards.length) return;
+  function setActive(btn){ [...box.querySelectorAll('.chip')].forEach(b=>b.classList.toggle('is-active', b===btn)); }
+  function apply(f){
+    cards.forEach(c=>{
+      const tags=(c.getAttribute('data-tags')||'').split(/\s+/).filter(Boolean);
+      c.style.display = (f==='all'||tags.includes(f)) ? '' : 'none';
+    });
+  }
+  box.addEventListener('click', (e)=>{
+    const btn=e.target.closest('button[data-filter]'); if(!btn) return;
+    const f=btn.getAttribute('data-filter')||'all';
+    setActive(btn); apply(f);
+  });
+  apply('all');
+})();
+</script>
 </main>
 <footer class="section" style="padding:22px 0;border-top:1px solid rgba(34,49,70,.6);margin-top:18px">
 <div class="container">

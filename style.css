@@ -107,7 +107,7 @@ input:focus,select:focus,textarea:focus{border-color:rgba(242,183,5,.55);box-sha
 
 /* Make article illustrations smaller and calmer */
 .article .nf-figure{padding:12px; max-width: 760px;}
-.article .nf-figure img{max-height: 360px; object-fit: cover;}
+.article .nf-figure img{max-width: 100%; height: auto; object-fit: contain;}
 @media (max-width:560px){
   .article .nf-figure img{max-height: 260px;}
 }
@@ -152,5 +152,152 @@ body[data-path="/test.html"] .muted{
 
 
 /* Reduce figures in listings/hero */
-.hero-right .nf-figure img{max-height: 320px; object-fit: cover;}
+.hero-right .nf-figure img{max-width: 100%; height: auto; object-fit: contain;}
 @media (max-width:560px){ .hero-right .nf-figure img{max-height: 220px;} }
+
+/* Article figure max width */
+.article .nf-figure{max-width: 720px; margin-left:auto; margin-right:auto;}
+.hero-right .nf-figure{max-width: 520px; margin-left:auto; margin-right:auto;}
+
+
+/* =========================
+   COSMIC THEME v3 (NEUROFIELDRAS)
+   ========================= */
+:root{
+  --bg0:#070B14;
+  --bg1:#0B1324;
+  --ink:#F2EFE6;         /* milk */
+  --ink2:rgba(242,239,230,.78);
+  --panel:#1A2436;       /* deep card */
+  --panel2:rgba(242,239,230,.10);
+  --cream:#F2EFE6;
+  --cream2:rgba(242,239,230,.88);
+  --graphite:#16202F;
+  --accent:#F2B705;      /* amber */
+  --radius:20px;
+  --shadow: 0 16px 50px rgba(0,0,0,.35);
+}
+
+body{
+  background: radial-gradient(1200px 700px at 20% 0%, rgba(242,183,5,.10), transparent 55%),
+              radial-gradient(900px 600px at 80% 10%, rgba(88,155,255,.10), transparent 55%),
+              radial-gradient(800px 600px at 50% 90%, rgba(242,239,230,.06), transparent 55%),
+              linear-gradient(180deg, var(--bg0), var(--bg1));
+  color: var(--ink);
+}
+
+/* subtle stars */
+body:before{
+  content:"";
+  position:fixed; inset:0;
+  pointer-events:none;
+  background:
+    radial-gradient(circle at 20% 30%, rgba(255,255,255,.20) 0 1px, transparent 2px),
+    radial-gradient(circle at 70% 20%, rgba(255,255,255,.14) 0 1px, transparent 2px),
+    radial-gradient(circle at 40% 70%, rgba(255,255,255,.12) 0 1px, transparent 2px),
+    radial-gradient(circle at 90% 60%, rgba(255,255,255,.10) 0 1px, transparent 2px),
+    radial-gradient(circle at 10% 80%, rgba(255,255,255,.10) 0 1px, transparent 2px);
+  opacity:.35;
+  mix-blend-mode:screen;
+  filter: blur(.2px);
+}
+
+/* topbar */
+.topbar{
+  backdrop-filter: blur(10px);
+  background: rgba(7,11,20,.55);
+  border-bottom: 1px solid rgba(242,239,230,.12);
+}
+.nav a{
+  color: rgba(242,239,230,.82);
+}
+.nav a:hover{
+  color: var(--cream);
+}
+
+/* brand */
+.brand{
+  padding: 6px 10px;
+  border-radius: 18px;
+  background: rgba(242,239,230,.08);
+  border: 1px solid rgba(242,239,230,.12);
+  box-shadow: 0 10px 30px rgba(0,0,0,.18);
+}
+.brand-name{
+  color: rgba(242,239,230,.92);
+}
+
+/* buttons */
+.btn{
+  border-radius: 999px;
+  border: 1px solid rgba(242,239,230,.18);
+  background: rgba(242,239,230,.08);
+  color: var(--cream);
+}
+.btn:hover{ background: rgba(242,239,230,.12); }
+.btn-primary{
+  background: linear-gradient(180deg, rgba(242,183,5,.95), rgba(242,183,5,.78));
+  color: #121826;
+  border-color: rgba(242,183,5,.55);
+}
+.btn-primary:hover{ filter: brightness(1.02); }
+
+/* cards */
+.card{
+  border-radius: var(--radius);
+  background: rgba(242,239,230,.10);
+  border: 1px solid rgba(242,239,230,.12);
+  box-shadow: var(--shadow);
+}
+.card-kicker{
+  color: rgba(242,239,230,.70);
+}
+.hr{ border-color: rgba(242,239,230,.12); }
+
+/* hero banner */
+.nf-banner{
+  border-radius: calc(var(--radius) + 6px);
+  overflow:hidden;
+  border: 1px solid rgba(242,239,230,.10);
+  background: rgba(242,239,230,.06);
+  box-shadow: var(--shadow);
+}
+.nf-banner img{ width:100%; height:auto; display:block; }
+
+/* chips / filters */
+.nf-filters{
+  display:flex; gap:10px; flex-wrap:wrap;
+  margin: 14px 0 0;
+}
+.chip{
+  border-radius: 999px;
+  padding: 10px 14px;
+  border: 1px solid rgba(242,239,230,.18);
+  background: rgba(242,239,230,.08);
+  color: rgba(242,239,230,.92);
+  cursor:pointer;
+  font-weight:600;
+  font-size: 13px;
+}
+.chip:hover{ background: rgba(242,239,230,.12); }
+.chip.is-active{
+  background: rgba(242,183,5,.18);
+  border-color: rgba(242,183,5,.40);
+  color: var(--cream);
+}
+
+/* accordion */
+.nf-acc{
+  border: 1px solid rgba(242,239,230,.12);
+  border-radius: 16px;
+  background: rgba(7,11,20,.25);
+  padding: 12px 12px;
+  margin: 10px 0;
+}
+.nf-acc summary{
+  cursor:pointer;
+  font-weight:700;
+  list-style:none;
+}
+.nf-acc summary::-webkit-details-marker{display:none;}
+.nf-acc__body{margin-top:10px;}
