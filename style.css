@@ -404,16 +404,7 @@ body:before{
   justify-items: center;
   margin-top: 12px;
 }
-.nf-strip img{
-  width: 100%;
-  max-width: 220px;      /* compact */
-  height: auto;
-  border-radius: 18px;
-  display:block;
-  border: 1px solid rgba(242,239,230,.12);
-  background: rgba(242,239,230,.06);
-  box-shadow: 0 12px 30px rgba(0,0,0,.18);
-}
+.nf-strip img{width:100%;max-width:200px;height:auto;border-radius:18px;display:block;border:1px solid rgba(242,239,230,.12);background:rgba(242,239,230,.06);box-shadow:0 12px 30px rgba(0,0,0,.18);}
 .nf-strip .cap{
   margin-top: 8px;
   font-size: 12.5px;
@@ -431,4 +422,33 @@ body:before{
 /* v6: disable float-style for figures (we use centered strips instead) */
 @media (min-width:900px){
   .nf-figure,.nf-banner{ float:none; width:100%; max-width:100%; margin: 14px 0; }
+}
+
+
+/* =========================
+   FULL-WIDTH "WHAT IS" v7
+   ========================= */
+.section.full-bleed{
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+.section.full-bleed .container{
+  max-width: 1200px;
+}
+.nf-what{
+  display:flex;
+  flex-direction:column;
+  gap: 16px;
+}
+.nf-what__hero{
+  max-width: 920px;
+}
+.nf-what__grid{
+  display:grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 10px;
+}
+@media (max-width: 980px){
+  .nf-what__grid{ grid-template-columns: 1fr; }
 }
