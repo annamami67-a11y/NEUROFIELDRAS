@@ -529,3 +529,31 @@ body:before{
   display:flex; gap:10px; flex-wrap:wrap;
   padding-top: 10px;
 }
+
+
+/* =========================
+   TEST: STAGE DESCRIPTIONS v9
+   ========================= */
+.stage-desc{
+  margin-top: 8px;
+  padding: 10px 12px;
+  border-radius: 16px;
+  border: 1px solid rgba(242,239,230,.12);
+  background: rgba(242,239,230,.05);
+}
+.stage-desc .st-title{
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+.stage-desc .st-body{
+  color: rgba(242,239,230,.85);
+  line-height: 1.45;
+}
+.test-tip{
+  margin-top: 10px;
+  padding: 10px 12px;
+  border-radius: 16px;
+  border: 1px solid rgba(242,239,230,.12);
+  background: rgba(242,183,5,.08);
+}
+.test-tip b{ color: rgba(242,239,230,.95); }

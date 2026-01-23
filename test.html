@@ -67,14 +67,14 @@ body[data-path="/test.html"] input, body[data-path="/test.html"] select, body[da
 <div class="notice"><b>Дисклеймер</b><p>Не медицинская диагностика. Это образовательная оценка для подбора поддержки.</p></div>
 <div class="card" style="margin-top:12px">
 <h3>Тест (упрощённый)</h3>
-<p class="small">Выберите стадию (1–7) в каждой сфере. Результат = минимальная стадия (зона риска).</p>
+<div class="test-tip small"><b>Важно:</b> выбирайте описание, которое бывает <b>чаще всего</b>, а не то, которое «иногда получается».</div>
 <div class="hr"></div>
 <div class="grid" style="gap:10px">
-<div><label class="small">Сенсорика</label><select id="s1"><option value="1">Стадия 1</option><option value="2">Стадия 2</option><option value="3">Стадия 3</option><option value="4">Стадия 4</option><option value="5">Стадия 5</option><option value="6">Стадия 6</option><option value="7">Стадия 7</option></select></div>
-<div><label class="small">Внимание</label><select id="s2"><option value="1">Стадия 1</option><option value="2">Стадия 2</option><option value="3">Стадия 3</option><option value="4">Стадия 4</option><option value="5">Стадия 5</option><option value="6">Стадия 6</option><option value="7">Стадия 7</option></select></div>
-<div><label class="small">Коммуникация</label><select id="s3"><option value="1">Стадия 1</option><option value="2">Стадия 2</option><option value="3">Стадия 3</option><option value="4">Стадия 4</option><option value="5">Стадия 5</option><option value="6">Стадия 6</option><option value="7">Стадия 7</option></select></div>
-<div><label class="small">Гибкость</label><select id="s4"><option value="1">Стадия 1</option><option value="2">Стадия 2</option><option value="3">Стадия 3</option><option value="4">Стадия 4</option><option value="5">Стадия 5</option><option value="6">Стадия 6</option><option value="7">Стадия 7</option></select></div>
-<div><label class="small">Социальность</label><select id="s5"><option value="1">Стадия 1</option><option value="2">Стадия 2</option><option value="3">Стадия 3</option><option value="4">Стадия 4</option><option value="5">Стадия 5</option><option value="6">Стадия 6</option><option value="7">Стадия 7</option></select></div>
+<div><label class="small">Сенсорика</label><select id="s1"><option value="1">Стадия 1</option><option value="2">Стадия 2</option><option value="3">Стадия 3</option><option value="4">Стадия 4</option><option value="5">Стадия 5</option><option value="6">Стадия 6</option><option value="7">Стадия 7</option></select><div class="stage-desc" id="d1"><div class="st-title">—</div><div class="st-body">—</div></div></div>
+<div><label class="small">Внимание</label><select id="s2"><option value="1">Стадия 1</option><option value="2">Стадия 2</option><option value="3">Стадия 3</option><option value="4">Стадия 4</option><option value="5">Стадия 5</option><option value="6">Стадия 6</option><option value="7">Стадия 7</option></select><div class="stage-desc" id="d2"><div class="st-title">—</div><div class="st-body">—</div></div></div>
+<div><label class="small">Коммуникация</label><select id="s3"><option value="1">Стадия 1</option><option value="2">Стадия 2</option><option value="3">Стадия 3</option><option value="4">Стадия 4</option><option value="5">Стадия 5</option><option value="6">Стадия 6</option><option value="7">Стадия 7</option></select><div class="stage-desc" id="d3"><div class="st-title">—</div><div class="st-body">—</div></div></div>
+<div><label class="small">Гибкость</label><select id="s4"><option value="1">Стадия 1</option><option value="2">Стадия 2</option><option value="3">Стадия 3</option><option value="4">Стадия 4</option><option value="5">Стадия 5</option><option value="6">Стадия 6</option><option value="7">Стадия 7</option></select><div class="stage-desc" id="d4"><div class="st-title">—</div><div class="st-body">—</div></div></div>
+<div><label class="small">Социальность</label><select id="s5"><option value="1">Стадия 1</option><option value="2">Стадия 2</option><option value="3">Стадия 3</option><option value="4">Стадия 4</option><option value="5">Стадия 5</option><option value="6">Стадия 6</option><option value="7">Стадия 7</option></select><div class="stage-desc" id="d5"><div class="st-title">—</div><div class="st-body">—</div></div></div>
 </div>
 <div style="margin-top:12px;display:flex;gap:10px;flex-wrap:wrap">
 <button class="btn btn-primary" id="calc" type="button">Показать результат</button>
@@ -84,18 +84,71 @@ body[data-path="/test.html"] input, body[data-path="/test.html"] select, body[da
 <div id="out" class="small">—</div>
 </div></div></section>
 <script>
+
 (function(){
-  const ids=['s1','s2','s3','s4','s5'].map(x=>document.getElementById(x));
+  const s1=document.getElementById('s1');
+  const s2=document.getElementById('s2');
+  const s3=document.getElementById('s3');
+  const s4=document.getElementById('s4');
+  const s5=document.getElementById('s5');
   const out=document.getElementById('out');
   const toBuy=document.getElementById('toBuy');
+
+  const DATA = {"sensory": {"1": {"title": "Стадия 1 — постоянный перегруз", "body": "Ребёнок часто испытывает сильный дискомфорт от звуков, света, прикосновений. Перегруз возникает быстро и неожиданно. Сам справиться не может."}, "2": {"title": "Стадия 2 — регуляция только с помощью взрослого", "body": "Ребёнок выдерживает стимулы, если рядом спокойный взрослый или знакомая среда. Без поддержки перегруз нарастает."}, "3": {"title": "Стадия 3 — первые признаки саморегуляции", "body": "Ребёнок начинает уходить, закрываться, искать тишину или повторяющиеся действия. Перегруз всё ещё частый, но уже предсказуемый."}, "4": {"title": "Стадия 4 — восстановление после перегруза", "body": "Ребёнок может восстановиться после сенсорной нагрузки быстрее. Некоторые стимулы переносит легче, чем раньше."}, "5": {"title": "Стадия 5 — скрытая сенсорная усталость", "body": "Во время активности держится хорошо, но перегруз проявляется позже (дома, вечером, после общения)."}, "6": {"title": "Стадия 6 — осознанное управление", "body": "Ребёнок знает, что ему мешает, и может попросить паузу или изменить условия."}, "7": {"title": "Стадия 7 — устойчивая адаптация", "body": "Среда и нагрузки подобраны под особенности ребёнка. Сенсорные перегрузы редкие и управляемые."}}, "attention": {"1": {"title": "Стадия 1 — внимание не удерживается", "body": "Ребёнок быстро «выпадает», не может сосредоточиться даже на короткое время."}, "2": {"title": "Стадия 2 — внимание только с поддержкой", "body": "Ребёнок удерживает внимание, если взрослый направляет и помогает постоянно."}, "3": {"title": "Стадия 3 — короткие циклы внимания", "body": "Может сосредоточиться на короткой задаче и завершить её при понятных условиях."}, "4": {"title": "Стадия 4 — переключение с подготовкой", "body": "Ребёнок может переключаться между задачами, если знает, что будет дальше."}, "5": {"title": "Стадия 5 — внимание устаёт от нагрузки", "body": "Длительная или многозадачная активность сильно утомляет."}, "6": {"title": "Стадия 6 — самостоятельное управление", "body": "Ребёнок может распределять внимание и делать паузы."}, "7": {"title": "Стадия 7 — гибкое внимание", "body": "Внимание адаптируется под задачу без сильного напряжения."}}, "communication": {"1": {"title": "Стадия 1 — коммуникация распадается при стрессе", "body": "При перегрузе ребёнок не может сообщить, что происходит."}, "2": {"title": "Стадия 2 — ответы в знакомых ситуациях", "body": "Ребёнок реагирует и отвечает, если ситуация предсказуема."}, "3": {"title": "Стадия 3 — коммуникация как просьба о помощи", "body": "Ребёнок начинает показывать, что ему трудно или нужна пауза."}, "4": {"title": "Стадия 4 — объяснение простых причин", "body": "Может показать или сказать, что именно не так."}, "5": {"title": "Стадия 5 — социальные шаблоны", "body": "Использует заученные фразы или сценарии общения."}, "6": {"title": "Стадия 6 — выражение состояний", "body": "Может говорить о чувствах, усталости, перегрузе."}, "7": {"title": "Стадия 7 — свободная коммуникация", "body": "Общение используется для контакта, а не только для защиты."}}, "flex": {"1": {"title": "Стадия 1 — любое изменение вызывает стресс", "body": "Даже небольшие изменения приводят к сильной реакции."}, "2": {"title": "Стадия 2 — изменения только с подготовкой", "body": "Ребёнок выдерживает перемены, если его заранее предупреждают."}, "3": {"title": "Стадия 3 — одна допустимая альтернатива", "body": "Может принять один вариант замены привычного сценария."}, "4": {"title": "Стадия 4 — восстановление после сбоя", "body": "После расстройства способен перестроиться."}, "5": {"title": "Стадия 5 — гибкость зависит от контекста", "body": "В одних ситуациях гибок, в других — резко реагирует."}, "6": {"title": "Стадия 6 — использование «плана Б»", "body": "Может сам предложить или принять альтернативу."}, "7": {"title": "Стадия 7 — принятие неопределённости", "body": "Изменения не разрушают состояние и поведение."}}, "social": {"1": {"title": "Стадия 1 — контакт перегружает", "body": "Присутствие других людей быстро утомляет или пугает."}, "2": {"title": "Стадия 2 — безопасен один взрослый", "body": "Комфортен контакт с одним знакомым человеком."}, "3": {"title": "Стадия 3 — совместное внимание", "body": "Может быть рядом и делать что-то вместе."}, "4": {"title": "Стадия 4 — взаимодействие по правилам", "body": "Участвует в игре или деятельности с понятной структурой."}, "5": {"title": "Стадия 5 — социальная усталость", "body": "Общение возможно, но сильно истощает."}, "6": {"title": "Стадия 6 — выбор контактов", "body": "Ребёнок выбирает, с кем и сколько общаться."}, "7": {"title": "Стадия 7 — устойчивые отношения", "body": "Способен поддерживать отношения без потери себя."}}};
+
+  function setDesc(descEl, sphereKey, stage){
+    const d = (DATA[sphereKey]||{})[String(stage)] || null;
+    if(!d) return;
+    descEl.querySelector('.st-title').textContent = d.title;
+    descEl.querySelector('.st-body').textContent = d.body;
+  }
+
+  const d1=document.getElementById('d1');
+  const d2=document.getElementById('d2');
+  const d3=document.getElementById('d3');
+  const d4=document.getElementById('d4');
+  const d5=document.getElementById('d5');
+
+  function refreshAll(){
+    setDesc(d1,'sensory', Number(s1.value||1));
+    setDesc(d2,'attention', Number(s2.value||1));
+    setDesc(d3,'communication', Number(s3.value||1));
+    setDesc(d4,'flex', Number(s4.value||1));
+    setDesc(d5,'social', Number(s5.value||1));
+  }
+
+  [s1,s2,s3,s4,s5].forEach((sel)=> sel.addEventListener('change', refreshAll));
+  refreshAll();
+
   document.getElementById('calc').addEventListener('click', ()=>{
-    const vals=ids.map(s=>Number(s.value||1));
+    const vals=[s1,s2,s3,s4,s5].map(s=>Number(s.value||1));
     const min=Math.min.apply(null, vals);
-    out.innerHTML='<b>Зона риска:</b> стадия '+min+' (начните поддержку с неё).';
+
+    const map = {
+      sensory: Number(s1.value||1),
+      attention: Number(s2.value||1),
+      communication: Number(s3.value||1),
+      flex: Number(s4.value||1),
+      social: Number(s5.value||1)
+    };
+
+    out.innerHTML = `
+      <div><b>Сенсорика:</b> стадия ${map.sensory}</div>
+      <div><b>Внимание:</b> стадия ${map.attention}</div>
+      <div><b>Коммуникация:</b> стадия ${map.communication}</div>
+      <div><b>Гибкость:</b> стадия ${map.flex}</div>
+      <div><b>Социальность:</b> стадия ${map.social}</div>
+      <div style="margin-top:10px"><b>Ведущая зона риска:</b> стадия ${min} (начните поддержку с неё).</div>
+      <div class="small muted" style="margin-top:8px">
+        <b>Что делать в первую очередь:</b> снизить нагрузку, добавить паузы и предсказуемость (сейчас‑потом), короткие занятия 5–12 минут, заканчивать на успехе.
+        <br><b>Чего не делать:</b> «дожимать» и требовать через перегруз, спорить в мелтдауне, усиливать стимулы (громко, быстро, много слов).
+      </div>
+    `;
     toBuy.href='/checkout.html?type=stage&stage='+min;
     window.NFToast&&window.NFToast('Готово','Рекомендуем начать со стадии '+min);
   });
 })();
+
 </script><section class="section"><div class="container">
 </section>
 
